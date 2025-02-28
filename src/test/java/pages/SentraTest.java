@@ -22,7 +22,7 @@ public class SentraTest {
     @Test
     public void test() {
         //Navega a la pagina web
-        driver.get("http://192.168.80.43:10500/home");
+        driver.get("http://192.168.80.43:10500");
     }
 
     @AfterMethod

@@ -3,12 +3,14 @@ import io.cucumber.java.en.*;
 import pages.FuncSentraTask;
 import pages.EditProfile;
 import pages.EditTask;
+import pages.EmptyPass;
 import pages.NewTask;
 import pages.NewUser;
 import pages.LoginPage;
 import pages.OrderTasks;
 import pages.ValidateTable;
 import pages.FirstPage;
+
 
 import org.testng.asserts.SoftAssert;
 
@@ -24,28 +26,12 @@ public class SentraSteps {
     FuncSentraTask funcsentratask = new FuncSentraTask();
     OrderTasks ordertask = new OrderTasks();
     ValidateTable valid = new ValidateTable();
+    EmptyPass emptyp = new EmptyPass();
 
-     //Registrar nuevo usuario
-    @Then("I fill in the new user fields with name {string}, last name {string}, email {string}, password {string}, repeat password {string}")
-    public void newLogin(String nombre,String apellido,String correo,String password,String repetirpasword) {
-        newuser.newLogin(nombre, apellido,correo,password,repetirpasword);
-    }
-    //Hace click al botón "REGISTRAR USUARIO"
-    @Then("I click on the register user button")
-    public void ButtonnewUser() {
-        try { Thread.sleep(2000); // 2 segundo de espera
-        } catch (InterruptedException e) {e.printStackTrace();}
-        newuser.ButtonnewUser();
-    }
-    //Iniciar Sesion//
-    //Completa el campo email y contraseña en login de usuario
-    @When("I fill in the fields with user {string}, password {string}")
-    public void Login(String user, String password) {
-        loginpage.login(user,password);
-        soft.assertEquals(user, "belola@gmail.cl");
-        soft.assertEquals(password, "Sentra2025");
-        soft.assertAll();
-    }
+
+    //LOGIN//
+
+    
     //Navegar a login principal Sentra//
     @Given("As a user I navigate to the Sentra application")
     public void NavigatetoSentraTask() {
@@ -54,58 +40,23 @@ public class SentraSteps {
         firstPage.NavigatetoSentraTask();
     }
 
+    //Completa el campo email y contraseña en login de usuario
+    @When("I fill in the fields with user {string}, password {string}")
+    public void Login(String user, String password) {
+        loginpage.login(user,password);
+        soft.assertEquals(user, "Test");
+        soft.assertEquals(password, "Test11");
+        soft.assertAll();
+    }
+
    //click en el botón ingresar desde el login de usuario//
     @Then("I click on the login button")
     public void ButtonSendLogin() {
         try { Thread.sleep(2000); // 2 segundo de espera
         } catch (InterruptedException e) {e.printStackTrace();}
         loginpage.ButtonSendLogin();
-    }   
+    }      
 
-    //click en botón crear un nuevo usuario desde el login de usuario//
-    @When("^I click on the create new user button$")
-    public void ButtonNewUser() {
-        try { Thread.sleep(2000); // 2 segundo de espera
-        } catch (InterruptedException e) {e.printStackTrace();}
-        newuser.ButtonNewUser();
-    }
-
-    //click en botón cancelar un nuevo usuario desde el login de usuario //
-    @Then("^I click on the cancel button within register user$")
-    public void ButtonNewUserCancel() {
-        try { Thread.sleep(2000); // 2 segundo de espera
-        } catch (InterruptedException e) {e.printStackTrace();}
-        newuser.ButtonNewUserCancel();
-    } 
-
-    // El usuario registra un nombre //
-    @Then("^I will register the name$")
-    public void AddName() {
-        newuser.AddName();
-    } 
-     
-    // El usuario registra un apellido //
-    @Then("^I will register the last name$")
-    public void AddLastName() {
-        newuser.AddLastName();
-    }    
-    // El usuario registra un email //
-    @Then("^I will register the email$")
-    public void AddEmail() {
-        newuser.AddEmail();
-    } 
-   
-    // El usuario registra una password //
-    @Then("^I will register a password$")
-    public void AddPass() {
-        newuser.AddPass();
-    } 
-
-    // El usuario repíte la password //
-    @Then("^I will repeat the password$")
-    public void AddRepeatPass() {
-        newuser.AddRepeatPass();
-    } 
 
     //Escribir email del usuario desde el login de usuario//
     @Then("^I will write an email in the email field$")
@@ -127,148 +78,228 @@ public class SentraSteps {
         funcsentratask.ButtonExit();
     }
 
-    //Editar Perfil (LoginEditarPerfil)  //
-    //Hace clic al botón PERFIL ubicado//
-    @When("^As a user I go to Profile$")
+
+     //REGISTRAR USUARIO
+
+
+     @Given("I am on the login page to create a new user")
+     public void navigateToUrl() {
+        try { Thread.sleep(1000); // 1 segundo de espera
+        } catch (InterruptedException e) {e.printStackTrace();}
+         // Navegar a la página principal (supuesto método en la clase PaginaPrincipal)
+         newuser.navigateToUrl();
+     }
+     @When("I press the Create new user button, then cancel and then create new user")
+     public void navigateToNewUser() {
+        try { Thread.sleep(1000); // 1 segundo de espera
+        } catch (InterruptedException e) {e.printStackTrace();}
+        newuser.navigateToNewUser();
+     }
+     @Then("I complete the form with the new user data")
+     public void formNewUser() {
+        try { Thread.sleep(1000); // 1 segundo de espera
+        } catch (InterruptedException e) {e.printStackTrace();}
+        newuser.formNewUser();
+     }
+     @When("I press the Register user button")
+     public void ButtonnewUser() {
+        try { Thread.sleep(1000); // 1 segundo de espera
+        } catch (InterruptedException e) {e.printStackTrace();}
+        newuser.ButtonnewUser();
+     }
+     @When("I enter the registered email and password")
+     public void login() {
+        try { Thread.sleep(1000); // 1 segundo de espera
+        } catch (InterruptedException e) {e.printStackTrace();}
+        newuser.login();
+     }
+     @And("I go through the buttons and leave the page")
+     public void recoBtns() {
+        try { Thread.sleep(1000); // 1 segundo de espera
+        } catch (InterruptedException e) {e.printStackTrace();}
+        newuser.recoBtns();
+     }
+  
+
+
+    //EDITAR PEFIL//
+
+
+
+    @Given("I access the login page")
+    public void iinavigateToUrl() {
+        try { Thread.sleep(1000); // 1 segundo de espera
+        } catch (InterruptedException e) {e.printStackTrace();}
+        editprofile.navigateToUrl();
+    }
+    @When("I enter the email and password")
+    public void iilogin() {
+        try { Thread.sleep(1000); // 1 segundo de espera
+        } catch (InterruptedException e) {e.printStackTrace();}
+        editprofile.login();
+    }
+    @Then("I click the Login button")
+    public void iIngresar() {
+        try { Thread.sleep(1000); // 1 segundo de espera
+        } catch (InterruptedException e) {e.printStackTrace();}
+        editprofile.Ingresar();
+    }
+    @Then("I press the Home button")
+    public void iButtonHome() {
+        try { Thread.sleep(1000); // 1 segundo de espera
+        } catch (InterruptedException e) {e.printStackTrace();}
+        editprofile.ButtonHome();
+    }
+    @Then("I press the Profile button")
     public void ButtonProfile() {
-        try { Thread.sleep(2000); // 2 segundo de espera
+        try { Thread.sleep(1000); // 1 segundo de espera
         } catch (InterruptedException e) {e.printStackTrace();}
         editprofile.ButtonProfile();
     }
-
-    //Hace clic al botón "editar datos usuario"//
-    @Then("^From Profile I click on Edit user data$")
+    @Then("I press the Edit User button")
     public void ButtonDataUserEdit() {
-        try { Thread.sleep(2000); // 2 segundo de espera
+        try { Thread.sleep(1000); // 1 segundo de espera
         } catch (InterruptedException e) {e.printStackTrace();}
         editprofile.ButtonDataUserEdit();
     }
-    
-    //Hace clic al botón "cancelar" desde "editar datos usuario"//
-    @Then("^I click on the cancel button within user data modification$")
+    @Then("I press the Cancel Form User button")
     public void ButtonDataUserCancel() {
-        try { Thread.sleep(2000); // 2 segundo de espera
+        try { Thread.sleep(1000); // 1 segundo de espera
         } catch (InterruptedException e) {e.printStackTrace();}
         editprofile.ButtonDataUserCancel();
     }
-    
-    //Método para modificar nombre del usuario//
-    @Then("^I will edit the name field in profile$")
-    public void EditName() {
-        editprofile.EditName();
+    @Then("I press the Edit User button again")
+    public void iButtonDataUserEdit() {
+        try { Thread.sleep(1000); // 1 segundo de espera
+        } catch (InterruptedException e) {e.printStackTrace();}
+        editprofile.iButtonDataUserEdit();
     }
-    
-    //Método para modificar nombre del apellido//
-    @Then("^I will edit the last name field in profile$")
-    public void EditLastName() {
-        editprofile.EditLastName();
+    @When("I make changes to the form fields")
+    public void editForm() {
+        try { Thread.sleep(1000); // 1 segundo de espera
+        } catch (InterruptedException e) {e.printStackTrace();}
+        editprofile.editForm();
     }
-    
-    //Método para modificar nombre del email//
-    @Then("^I will edit the email field in profile$")
-    public void EditarEmail() {
-        editprofile.EditEmail();
-    }
-    
-    //Hace clic al botón "Modificar usuario" desde "editar datos usuario"//
-    @Then("^I click on the modify user button$")
+    @Then("I press the Modify User button")
     public void ButtonUserModify() {
-        try { Thread.sleep(2000); // 2 segundo de espera
+        try { Thread.sleep(1000); // 1 segundo de espera
         } catch (InterruptedException e) {e.printStackTrace();}
         editprofile.ButtonUserModify();
     }
-     
-    //Hace clic al botón "Cambiar contraseña" desde "editar datos usuario"//
-    @Then("^From Profile I click on change password$")
+    @When("I am redirected to the next screen, I press the Change Password button")
     public void ButtonPassChange() {
-        try { Thread.sleep(2000); // 2 segundo de espera
+        try { Thread.sleep(1000); // 1 segundo de espera
         } catch (InterruptedException e) {e.printStackTrace();}
         editprofile.ButtonPassChange();
     }
-   
-    //Hace clic al botón "Cancelar" desde "cambiar contraseña"//
-    @Then("^I click on the cancel button within change password$")
+    @Then("I press the Cancel Form button")
     public void ButtonCancelPassChange() {
-        try { Thread.sleep(2000); // 2 segundo de espera
+        try { Thread.sleep(1000); // 1 segundo de espera
         } catch (InterruptedException e) {e.printStackTrace();}
         editprofile.ButtonCancelPassChange();
     }
-    
-    //Método para escribir contraseña en el campo "Escribe tu contraseña"//
-    @Then("^I will write in the field Write your password$")
-    public void campWritePass() {
-        editprofile.campWritePass();
-    }
-    
-    //Método para escribir contraseña en el campo "Repite tu contraseña"//
-    @Then("^I will write in the field Repeat your password$")
-    public void campRepeatPass() {
-        editprofile.campRepeatPass();
-    }
-    
-    //Hace clic al botón "Cambiar contraseña"
-    @Then("^I click on the change password button$")
+    @Then("I press the Change Password Main button")
     public void iButtonPassChange() {
-        try { Thread.sleep(2000); // 2 segundo de espera
+        try { Thread.sleep(1000); // 1 segundo de espera
         } catch (InterruptedException e) {e.printStackTrace();}
         editprofile.iButtonPassChange();
     }
-    
-    //Hace clic para Crear Tarea//
-    @When("^I click on create new task$")
-    public void ButtonNewTask() {
-        try { Thread.sleep(2000); // 2 segundo de espera
+    @When("I change the password")
+    public void changePass() {
+        try { Thread.sleep(1000); // 1 segundo de espera
         } catch (InterruptedException e) {e.printStackTrace();}
-        newtask.ButtonNewTask();
+        editprofile.changePass();
     }
-     
-    //Hace clic al botón "Cancelar" desde "crear tarea"//
-    @Then("^I click on the cancel button of a new task$")
-    public void ButtonCancelTask() {
-        try { Thread.sleep(2000); // 2 segundo de espera
+    @Then("I press the Save Password Change button")
+    public void iiButtonPassChange(){
+        try { Thread.sleep(1000); // 1 segundo de espera
         } catch (InterruptedException e) {e.printStackTrace();}
-        newtask.ButtonCancelTask();
+        editprofile.iiButtonPassChange();
     }
-    
-    //Escribe en el campo título//
-    @Then("^I will write in the title field$")
-    public void SendTitle() {
-        newtask.SendTitle();
-    }
-    
-    //Escribe en el campo descripción//
-    @Then("^I will write a description$")
-    public void SendDescription() {
-        newtask.SendDescription();
-    }
- 
-    //Escribe en el campo fecha de vencimiento//
-    @Then("^I will register a due date$")
-    public void SendExpiredDate() {
-        newtask.SendExpiredDate();
-    }
-    
-    //Escribe en el campo prioridad//
-    @Then("^I will set a priority$")
-    public void SendPriority() {
-        newtask.SendPriority();
-    }
-  
-    //Hace clic al botón "Crear tarea"//
-    @Then("^I click on the create task button$")
-    public void ButtonCreateNewTask() {
-        try { Thread.sleep(2000); // 2 segundo de espera
+    @Then("I click the Logout button and it takes me to the login screen")
+    public void Exit() {
+        try { Thread.sleep(1000); // 1 segundo de espera
         } catch (InterruptedException e) {e.printStackTrace();}
-        newtask.ButtonCreateNewTask();
+        editprofile.Exit();
     }
-  
-    //Hace clic al botón "Home"//
-    @When("As a user I go to Home")
+
+
+
+    //CREAR TAREA
+
+
+
+    @Given("I enter the main page")
+    public void inavigateToUrl() {
+        // Navegar a la página principal (supuesto método en la clase PaginaPrincipal)
+        newtask.navigateToUrl();
+    }
+    @When("I fill in the fields with the email and password")
+    public void ilogin() {
+        try { Thread.sleep(1000); // 1 segundo de espera
+        } catch (InterruptedException e) {e.printStackTrace();}
+        newtask.login();
+    }
+    @Then("I click the login button")
+    public void Ingresar() {
+        try { Thread.sleep(1000); // 1 segundo de espera
+        } catch (InterruptedException e) {e.printStackTrace();}
+        newtask.Ingresar();
+    }
+    @Then("I click the Home button")
     public void ButtonHome() {
-        try { Thread.sleep(2000); // 2 segundo de espera
+        try { Thread.sleep(1000); // 1 segundo de espera
         } catch (InterruptedException e) {e.printStackTrace();}
         newtask.ButtonHome();
     }
+    @Then("I click the New Task button")
+    public void ButtonNewTask() {
+        try { Thread.sleep(1000); // 1 segundo de espera
+        } catch (InterruptedException e) {e.printStackTrace();}
+        newtask.ButtonNewTask();
+    }
+    @Then("I click the cancel button")
+    public void ButtonCancelTask() {
+        try { Thread.sleep(1000); // 1 segundo de espera
+        } catch (InterruptedException e) {e.printStackTrace();}
+        newtask.ButtonCancelTask();
+    }
+    @Then("I click the new task button")
+    public void iButtonNewTask() {
+        try { Thread.sleep(1000); // 1 segundo de espera
+        } catch (InterruptedException e) {e.printStackTrace();}
+        newtask.iButtonNewTask();
+    }
+    @When("I complete the form fields")
+    public void formTask() {
+        try { Thread.sleep(1000); // 1 segundo de espera
+        } catch (InterruptedException e) {e.printStackTrace();}
+        newtask.formTask();
+    }
+    @Then("I click the Create Task button")
+    public void ButtonCreateTask() {
+        try { Thread.sleep(1000); // 1 segundo de espera
+        } catch (InterruptedException e) {e.printStackTrace();}
+        newtask.ButtonCreateTask();
+    }
+    @Then("I click the Profile button")
+    public void Perfilamiento() {
+        try { Thread.sleep(1000); // 1 segundo de espera
+        } catch (InterruptedException e) {e.printStackTrace();}
+        newtask.Perfilamiento();
+    }
+    @And("I click the Logout button and leave the page")
+    public void ExitTask() {
+        try { Thread.sleep(1000); // 1 segundo de espera
+        } catch (InterruptedException e) {e.printStackTrace();}
+        newtask.Exit();
+    }
+
+
+
+
+    //EDITAR TAREAS
+
     
     //Hace clic al botón "Tareas"//
     @When("^I enter a created task$")
@@ -297,24 +328,32 @@ public class SentraSteps {
     //Método para editar el campo título//
     @Then("^I will edit the title field$")
     public void EditTitle() {
+        try { Thread.sleep(1000); // 1 segundo de espera
+        } catch (InterruptedException e) {e.printStackTrace();}
         edittask.EditTitle();
     }
     
     //Método para editar el campo descripción//
     @Then("^I will edit the description field$")
     public void EditDescription() {
+        try { Thread.sleep(1000); // 1 segundo de espera
+        } catch (InterruptedException e) {e.printStackTrace();}
         edittask.EditDescription();
     }
    
     //Método para editar el campo fecha de vencimiento//
     @Then("^I will edit the due date field$")
     public void EditExpiredDate() {
+        try { Thread.sleep(1000); // 1 segundo de espera
+        } catch (InterruptedException e) {e.printStackTrace();}
         edittask.EditExpiredDate();
     }
     
     //Método para editar el campo prioridad//
     @Then("^I will edit the priority field$")
     public void EditPriority() {
+        try { Thread.sleep(1000); // 1 segundo de espera
+        } catch (InterruptedException e) {e.printStackTrace();}
         edittask.EditPriority();
     }
    
@@ -325,6 +364,9 @@ public class SentraSteps {
         } catch (InterruptedException e) {e.printStackTrace();}
         edittask.ButtonModifyTask();
     }
+
+
+    // ORDER
 
     //Hace clic al botón "Ordenar titulos Ascendente"//
     @When("^I click on the Title column to sort in ascending order$")
@@ -409,42 +451,56 @@ public class SentraSteps {
     //Hace clic al botón "Tareas por pagina"//
     @Then("^I click on the tasks per page button$")
     public void ButtonTasks() {
+        try { Thread.sleep(1000); // 1 segundo de espera
+        } catch (InterruptedException e) {e.printStackTrace();}
         funcsentratask.ButtonTasks();
     }
     
     //Hace clic al botón "Tareas por pagina" seleccionando la opción 5//
     @Then("^I click on the tasks per page button selecting the option 5$")
     public void ButtonPage1() {
+        try { Thread.sleep(1000); // 1 segundo de espera
+        } catch (InterruptedException e) {e.printStackTrace();}
         funcsentratask.ButtonPage1();
     }
     
     //Hace clic al botón "Tareas por pagina" seleccionando la opción 10//
     @Then("^I click on the tasks per page button selecting the option 10$")
     public void ButtonPage2() {
+        try { Thread.sleep(1000); // 1 segundo de espera
+        } catch (InterruptedException e) {e.printStackTrace();}
         funcsentratask.ButtonPage2();
     }
   
     //Hace clic al botón "Tareas por pagina" seleccionando la opción 20//
     @Then("^I click on the tasks per page button selecting the option 20$")
     public void ButtonPage3() {
+        try { Thread.sleep(1000); // 1 segundo de espera
+        } catch (InterruptedException e) {e.printStackTrace();}
         funcsentratask.ButtonPage3();
     }
 
     //Valida la informacion de login
     @Given("^user correctly enters their data$")
     public void userCorrectlyEntersTheirData() {
+        try { Thread.sleep(1000); // 1 segundo de espera
+        } catch (InterruptedException e) {e.printStackTrace();}
         valid.LoginEmailPassword();
     }
 
     //Selecciona el botón de login
     @When("^selects the login button$")
     public void Selectedloggin() {
+        try { Thread.sleep(1000); // 1 segundo de espera
+        } catch (InterruptedException e) {e.printStackTrace();}
         valid.ClickButtonLogin();
     }
 
     //Selecciona el botón de home
     @Then("^selects the home button within the application$")
     public void SelectedHome() {
+        try { Thread.sleep(1000); // 1 segundo de espera
+        } catch (InterruptedException e) {e.printStackTrace();}
         valid.ClickButtonHome();
     }
 
@@ -463,6 +519,45 @@ public class SentraSteps {
         try { Thread.sleep(2000); // 2 segundo de espera
         } catch (InterruptedException e) {e.printStackTrace();}
         valid.ClickButtonSalir();
+    }
+
+        //ERROR PASS 
+
+    @Given("I enter the main page of Sentra Task")
+    public void iiinavigateToUrl() {try { Thread.sleep(1000); // 1 segundo de espera
+    } catch (InterruptedException e) {e.printStackTrace();}
+        emptyp.navigateToUrl();
+    }
+    @When("I go to create a new user")
+    public void NewUser() {
+        try { Thread.sleep(1000); // 1 segundo de espera
+        } catch (InterruptedException e) {e.printStackTrace();}
+        emptyp.NewUser();
+    }
+    @Then("I complete the form, except for repeating the password")
+    public void iformNewUser() {
+        try { Thread.sleep(1000); // 1 segundo de espera
+        } catch (InterruptedException e) {e.printStackTrace();}
+        emptyp.formNewUser();
+    }
+    @And("I select the register user button and an error is displayed")
+    public void iButtonnewUser() {
+        try { Thread.sleep(1000); // 1 segundo de espera
+        } catch (InterruptedException e) {e.printStackTrace();}
+        emptyp.ButtonnewUser();
+        
+    }
+    @Then("the message {string} should appear")
+    public void error(String mensajeEsperado) throws InterruptedException {
+        emptyp.error();
+        soft.assertEquals("Contraseña no coinciden", mensajeEsperado);
+        Thread.sleep(3000);
+    }
+    @And("I select the cancel button and return to the login")
+    public void ButtonCancel(){
+        try { Thread.sleep(1000); // 1 segundo de espera
+        } catch (InterruptedException e) {e.printStackTrace();}
+        emptyp.ButtonCancel();
     }
 
 

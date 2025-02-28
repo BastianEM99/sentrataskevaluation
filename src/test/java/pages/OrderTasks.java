@@ -10,6 +10,18 @@ public class OrderTasks extends FirstPage{
     private String btnOrderExpiredDateAsc = "(//span[@class='MuiButtonBase-root MuiTableSortLabel-root css-7fdmwy'])[3]";
     private String btnOrderExpiredDateDesc = "(//span[@role='button'])[3]";
 
+
+    private String url = "http://192.168.80.43:10500";
+
+
+
+    //Navega a la url
+    public void navigateToUrl() {
+        driver.manage().window().maximize();
+        navigateTo(url);
+
+    }
+
     //click al botón "Prioridad" Ascemndente
     public void ButtonOrderPritorityAsc() {{
         clickElement(btnOrderPritorityAsc);

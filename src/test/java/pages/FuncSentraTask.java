@@ -15,6 +15,18 @@ public class FuncSentraTask extends FirstPage {
     private String btnTaskPage3 = "//*[@id=\":r6:\"]/li[3]";
     private String btnExit = "//span[@class='MuiTypography-root MuiTypography-body1 MuiListItemText-primary css-yb0lig']";
 
+
+    private String url = "http://192.168.80.43:10500";
+
+
+
+    //Navega a la url
+    public void navigateToUrl() {
+        driver.manage().window().maximize();
+        navigateTo(url);
+
+    }
+
     //clic al botón " < " 
     public void ButtonMore() {{
         clickElement(btnMore);

@@ -14,7 +14,7 @@ private String loginbtn = "//button[@type='submit']";
 private String home = "//span[normalize-space()='Home']";
 private String exit = "//span[contains(.,'Salir')]";    
     
-private String url = "http://192.168.80.43:10500/home";
+private String url = "http://192.168.80.43:10500";
         
 public ValidateTable() {
     super(driver);

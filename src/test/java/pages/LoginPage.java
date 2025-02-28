@@ -3,7 +3,7 @@ package pages;
 public class LoginPage extends FirstPage{
 
     // URL //
-    private String url = "http://192.168.80.43:10500/home";
+    private String url = "http://192.168.80.43:10500";
 
     //xPath's//
     private String sendEmail = "//input[@id='email']";
@@ -18,11 +18,11 @@ public class LoginPage extends FirstPage{
         
     //Escribe el email del usuario 
     public void SendEmail() {
-        write(sendEmail,"belola@gmail.cl");
+        write(sendEmail,"Test");
     }
     //Escribe la contraseña del usuario
     public void SendPassword() {
-        write(sendPass,"Sentra2025");
+        write(sendPass,"Test11");
     }
     //click en el botón ingresar 
     public void ButtonSendLogin() {

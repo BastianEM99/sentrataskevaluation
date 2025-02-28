@@ -3,42 +3,25 @@
 
 ##ASSERTS##
 
-### Create a New User with Asserts ### 
- @ScenarioCreateNewUser
-    Scenario: A new user navigates to the Sentra application and registers a new profile.
-        Given As a user I navigate to the Sentra application
-        When I click on the create new user button
-        Then I click on the cancel button within register user
-        When I click on the create new user button
-        Then I fill in the new user fields with name "bastian99", last name "elola99", email "belola@gmail.cl", password "Sentra2025", repeat password "Sentra2025"
-        Then I click on the register user button
-
 ### Login with credentials of the new user with Asserts ###
  @ScenarioUserLogin  
     Scenario: User navigates and logs in to the Sentra Login page, goes to Profile, Home and then clicks the logout button.
         Given As a user I navigate to the Sentra application
         When I fill in the fields with user "belola@gmail.cl", password "Sentra2025"
         Then I click on the login button
-        When As a user I go to Profile
-        When As a user I go to Home
         Then I log out from sentratask
-
-  ## COMENTAR EL ESCENARIO QUE SE DESEA PROBAR ##
+        
 
     ### Create a New User ###
 
-@CreateNewUser
-    Scenario: A new user navigates to the Sentra application and registers a new profile.
-        Given As a user I navigate to the Sentra application
-        When I click on the create new user button
-        Then I click on the cancel button within register user
-        When I click on the create new user button
-        Then I will register the name
-        Then I will register the last name
-        Then I will register the email
-        Then I will register a password
-        Then I will repeat the password
-        And I click on the register user button
+@NewUser
+Scenario: User clicks on "Create new user" LOGIN NEW USER
+    Given I am on the login page to create a new user
+    When I press the Create new user button, then cancel and then create new user
+    Then I complete the form with the new user data
+    When I press the Register user button
+    When I enter the registered email and password
+    And I go through the buttons and leave the page
 
 
  ## Login with credentials of the new user ##
@@ -54,39 +37,40 @@
 
 ## Edit information of the new user ##
 
-@ModifyProfile   
-    Scenario: As a user I will enter the profile and edit the user data.
-        Given As a user I navigate to the Sentra application
-        Then I will write an email in the email field
-        Then I will write a password in the password field
-        And I click on the login button
-        When As a user I go to Profile
-        Then From Profile I click on Edit user data
-        Then I click on the cancel button within user data modification
-        Then From Profile I click on Edit user data
-        Then I will edit the name field in profile
-        Then I will edit the last name field in profile
-        Then I will edit the email field in profile
-        And I click on the modify user button
-        And I log out from sentratask
+@Editprofile
+Scenario: The user updates their information in the profile
+    Given I access the login page
+    When I enter the email and password
+    Then I click the Login button
+    Then I press the Home button
+    Then I press the Profile button
+    Then I press the Edit User button
+    Then I press the Cancel Form User button
+    Then I press the Edit User button again
+    When I make changes to the form fields
+    Then I press the Modify User button
+    When I am redirected to the next screen, I press the Change Password button
+    Then I press the Cancel Form button
+    Then I press the Change Password Main button
+    When I change the password
+    Then I press the Save Password Change button
+    Then I click the Logout button and it takes me to the login screen
 
 ## Create a new task ##
 
 @NewTask
-    Scenario: User logs in to the Sentra Login page and creates a new task.
-        Given As a user I navigate to the Sentra application
-        Then I will write an email in the email field
-        Then I will write a password in the password field
-        And I click on the login button
-        When I click on create new task
-        Then I click on the cancel button of a new task
-        When I click on create new task
-        Then I will write in the title field
-        Then I will write a description
-        Then I will register a due date
-        Then I will set a priority
-        And I click on the create task button
-        And I log out from sentratask
+Scenario: User clicks on tasks LOGIN NEW TASK
+    Given I enter the main page
+    When I fill in the fields with the email and password
+    Then I click the login button
+    Then I click the Home button
+    Then I click the New Task button
+    Then I click the cancel button
+    Then I click the new task button
+    When I complete the form fields
+    Then I click the Create Task button
+    Then I click the Profile button
+    And I click the Logout button and leave the page
 
 
 ## Edit a created task ##
@@ -126,25 +110,8 @@
             Then I log out from sentratask
 
 
-## Change the password created previously ##
 
-@PassChange
-  Scenario: As a user I will navigate to login, enter the profile and change the password.
-        Given As a user I navigate to the Sentra application
-        Then I will write an email in the email field
-        Then I will write a password in the password field
-        And I click on the login button
-        When As a user I go to Profile
-        Then From Profile I click on change password
-        Then I click on the cancel button within change password
-        Then From Profile I click on change password
-        Then I will write in the field Write your password
-        Then I will write in the field Repeat your password
-        And I click on the change password button
-        And I log out from sentratask
-
-## Funcionality of main page ##      
-
+## Functionality of main page ##   
 @TestFunctionality
     Scenario: User logs in to Sentra Login, tests buttons to collapse views and logs out
         Given As a user I navigate to the Sentra application
@@ -173,6 +140,19 @@
         Then selects the home button within the application
         And views the task table
         And selects logout
+
+#  Error Pass  #
+
+@ErrorRepeatPass
+ 
+Scenario: A new user is created without repeating the password EMPTY
+    Given I enter the main page of Sentra Task
+    When I go to create a new user
+    Then I complete the form, except for repeating the password
+    And I select the register user button and an error is displayed
+    Then the message "Contraseñas no coinciden" should appear
+    And I select the cancel button and return to the login
+
 
 ## Close Browser ##
 

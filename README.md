@@ -15,6 +15,8 @@ Este archivo contiene los escenarios de características escritos en lenguaje Gh
 - Cambiar la contraseña
 - Probar funcionalidades de la interfaz de usuario
 - Ordenar tareas
+- Verificar la existencia de una tabla de tareas
+- Manejar errores al crear un usuario
 - Cerrar sesión
 
 ## Archivos Java
@@ -61,9 +63,9 @@ Este archivo contiene la clase `TestRunner` que configura y ejecuta las pruebas 
 2. Clone el repositorio en su máquina local.
 3. Navegue al directorio del proyecto.
 4. Ejecute las pruebas usando el siguiente comando:
-
+   ```sh
    mvn test
-
+   ```
 
 ## Dependencias
 

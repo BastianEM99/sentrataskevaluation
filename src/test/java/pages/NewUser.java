@@ -10,47 +10,65 @@ public class NewUser extends FirstPage {
     private String addEmail = "(//input[@id='email'])[2]";
     private String addPass = "(//input[@id='password'])[2]";
     private String addrepeatPass = "//input[@id='repeat_password']";
-    private String btnaddnewUser = "/html/body/div[2]/div[3]/div/div[2]/button[2]";  
+    private String btnaddnewUser = "//button[contains(.,'Registrar Usuario')]";
+    private String submitButton = "//button[@type='submit']";
+    private String home = "//span[normalize-space()='Home']";
+    private String profile = "//span[normalize-space()='Perfil']";
+    private String exit = "//span[contains(.,'Salir')]";
 
-    //Nuevo usuario//
-    public void newLogin(String nombre, String apellido, String correo, String password, String repetirpasword){
-        write(addName, nombre);  
-        write(addlastName, apellido);
-        write(addEmail, correo);
-        write(addPass, password);
-        write(addrepeatPass, repetirpasword);
+    //variables//
+    private String url = "http://192.168.80.43:10500";
+    private String nombre = "Test";
+    private String apellido = "Test11";
+    private String correo = "elolabastiantest@gmail.com";
+    private String password = "Sentra.2025";
+    private String repetirpasword = "Sentra.2025";
+
+
+    //Navega a la url
+    public void navigateToUrl() {
+        driver.manage().window().maximize();
+        navigateTo(url);
+
     }
-    //Click en botón crear un nuevo usuario
-    public void ButtonNewUser() {
+
+    //Click en botón "Nuevo Usuario" y "Cancelar"
+    public void navigateToNewUser() {
+        clickElement(btnNewUser);
+        clickElement(btnNewuserCancel);
         clickElement(btnNewUser);
     }
-    //Click en botón cancelar un nuevo usuario
-    public void ButtonNewUserCancel() {
-        clickElement(btnNewuserCancel);
+
+    //llenar formulario de nuevo usuario
+    public void formNewUser(){
+        write(addName, nombre);  
+         write(addlastName, apellido);
+         write(addEmail, correo);
+         write(addPass, password);
+         write(addrepeatPass, repetirpasword);
     }
-    //El usuario registra un nombre //
-    public void AddName() {
-        write(addName,"bastian99");
-    }
-    //El usuario registra un apellido //
-    public void AddLastName() {
-        write(addlastName,"elola99");
-    }
-    //El usuario registra un email //
-    public void AddEmail() {
-        write(addEmail,"belola@gmail.cl");
-    }
-    //El usuario registra una contraseña //
-    public void AddPass() {
-        write(addPass, "Sentra2025");
-    }
-    //El usuario repite la contraseña //
-    public void AddRepeatPass() {
-        write(addrepeatPass, "Sentra2025");
-    }
-    //Click en botón registrar nuevo usuario
+
+    //Click en botón "Registrar Usuario"
     public void ButtonnewUser() {
         clickElement(btnaddnewUser);
     }  
+
+    //El usuario ha sido registrado//
+
+
+    //Ingresa Email y Contraseña//
+    public void login(){
+        navigateTo(url);
+        write(addEmail, correo);  
+        write(addPass, password);    
+    }
+
+    //selecciona botones y los recorre//
+    public void recoBtns(){
+        clickElement(submitButton);
+        clickElement(home);
+        clickElement(profile);
+        clickElement(exit);
+    }
 }
 

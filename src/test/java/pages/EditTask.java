@@ -12,6 +12,15 @@ public class EditTask extends FirstPage {
     private String priorityEdit= "//input[@type='number']";
     private String btnModifytask = "//button[contains(.,'Modificar Tarea')]";
     
+     //variables//
+     private String url = "http://192.168.80.43:10500";
+
+    //Navega a la url
+    public void navigateToUrl() {
+        driver.manage().window().maximize();
+        navigateTo(url);
+
+    }
 
     // Click para seleccionar una nueva tarea
     public void ButtonSelectNewTask() {{
