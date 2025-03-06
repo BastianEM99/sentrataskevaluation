@@ -11,11 +11,11 @@ public class NewTask extends FirstPage {
     private String sendexpdate ="//input[@type='datetime-local']";
     private String sendpriority ="//input[@type='number']";
     private String btnCreatetask = "//button[contains(.,'Crear Tarea')]"; 
-    private String addEmail = "(//input[@id='email'])[2]";
-    private String addPass = "(//input[@id='password'])[2]";
+    private String addEmail = "(//input[@id='email'])[1]";
+    private String addPass = "//input[@id='password']";
     private String submitButton = "//button[@type='submit']";
     private String exit = "//span[contains(.,'Salir')]";
-    private String perfil ="//span[normalize-space()='Përfil']";
+    
 
 
     //variables//
@@ -24,15 +24,15 @@ public class NewTask extends FirstPage {
     private String description = "Nueva Descripción";
     private String expdate = "28-02-20250010:10:10";
     private String priority = "3";
-    private String correo = "elolabastiantest@gmail.com";
-    private String password = "Sentra.2025";
+    private String correo = "smartinez@sentra.cl";
+    private String password = "smart2025";
     
     
 
     //Navega a la url
     public void navigateToUrl() {
-        driver.manage().window().maximize();
         navigateTo(url);
+        driver.manage().window();
     }
 
     //Ingresa Email y Contraseña//
@@ -82,9 +82,6 @@ public class NewTask extends FirstPage {
         clickElement(btnCreatetask);
     }
 
-    public void Perfilamiento(){
-        clickElement(perfil);
-    }
 
     //selecciona boton salir
     public void Exit(){

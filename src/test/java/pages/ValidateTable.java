@@ -1,11 +1,13 @@
 package pages;
 
+
 public class ValidateTable extends BasePage {
 
+    
     // Variables
 private String xpathTable = "//*[@id=\"root\"]/div/main/div[2]/div/div/div[1]/table";
-private String cEmail = "belola@gmail.cl";
-private String cPassword = "Sentra2025";
+private String cEmail = "smartinez@sentra.cl";
+private String cPassword = "smart2025";
 
     //xPath's//
 private String email = "//input[@id='email']";
@@ -23,8 +25,8 @@ public ValidateTable() {
 
 //navegar url
 public void NavigatetoSentraTask() {
-    driver.manage().window().maximize();
     navigateTo(url);
+    driver.manage().window();
 }
 
 //ingresar emial y password

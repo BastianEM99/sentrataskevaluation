@@ -20,8 +20,8 @@ public class EmptyPass extends FirstPage {
 
     //Navega a la url
     public void navigateToUrl() {
-        driver.manage().window().maximize();
         navigateTo(url);
+        driver.manage().window();
 
     }
 

@@ -59,19 +59,18 @@ Este archivo contiene la clase `TestRunner` que configura y ejecuta las pruebas 
 
 ## Cómo Ejecutar las Pruebas
 
-1. Asegúrese de tener Java y Maven instalados en su máquina.
+1. Asegúrese de tener Java
 2. Clone el repositorio en su máquina local.
 3. Navegue al directorio del proyecto.
 4. Ejecute las pruebas usando el siguiente comando:
    ```sh
-   mvn test
+   gradle test
    ```
 
 ## Dependencias
 
 - Selenium WebDriver
 - WebDriverManager
-- JUnit
 
 ## Licencia
 

@@ -7,31 +7,33 @@ public class EditProfile extends FirstPage{
     SoftAssert soft = new SoftAssert();
 
     //xPath's//
-    private String addEmail = "(//input[@id='email'])[2]";
-    private String addPass = "(//input[@id='password'])[2]";
+    private String addEmail = "(//input[@id='email'])[1]";
+    private String Editemail = "//input[@id='email']";
+    private String addPass = "(//input[@id='password'])[1]";
+    private String campwritepass = "//input[@id='password']";
     private String btnProfile = "//span[normalize-space()='Perfil']";
     private String btnDataUserEdit = "//button[contains(.,'Editar Datos Usuario')]";
     private String btnDataUserCancel = "//button[contains(.,'Cancelar')]"; 
     private String Editname = "//*[@id='firstname']";
     private String EditlastName = "//input[@id='lastname']";
-    private String Editemail = "//input[@id='email']";
+    //private String Editemail = "//input[@id='email']";
     private String btnUserModify = "//button[contains(.,'Modificar Usuario')]";
     private String btnPassChange = "//button[contains(.,'Cambiar Contraseña')]";
     private String btnCancelPassChange = "//button[contains(.,'Cancelar')]";
-    private String campwritepass = "//input[@id='password']";
+    //private String campwritepass = "//input[@id='password']";
     private String camprepeatpass = "//input[@id='repeat_password']";
-    private String ibtnPassChange = "(//button[contains(.,'Cambiar Contraseña')])[2]";
+    private String ibtnPassChange = "//div[@class='MuiDialog-root MuiModal-root css-126xj0f']/div[@class='MuiDialog-container MuiDialog-scrollPaper css-ekeie0']/div[@class='MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation24 MuiDialog-paper MuiDialog-paperScrollPaper MuiDialog-paperWidthSm css-glxfda']/div[@class='MuiDialogActions-root MuiDialogActions-spacing css-1vskg8q']/button[2]";
     private String submitButton = "//button[@type='submit']";
     private String btnHome = "//span[normalize-space()='Home']";
     private String exit = "//span[contains(.,'Salir')]";
 
     //variables//
     private String url = "http://192.168.80.43:10500";
-    private String correo = "elolabastiantest@gmail.com";
-    private String password = "Sentra.2025";
+    private String correo = "juanito@gmail.com";
+    private String password = "juanito123";
     private String newnombre = "Simon";
     private String newapellido = "Martinez";
-    private String newemail = "Smartinez@sentra.cl";
+    private String newemail = "smartinez@sentra.cl";
     private String newpass = "smart2025";
     private String newpassrepeat = "smart2025";
 
@@ -40,8 +42,9 @@ public class EditProfile extends FirstPage{
 
     //Navega a la url
     public void navigateToUrl() {
-        driver.manage().window().maximize();
         navigateTo(url);
+        driver.manage().window();
+        
 
     }
 
@@ -116,6 +119,7 @@ public class EditProfile extends FirstPage{
         write(campwritepass, newpass);
         write(camprepeatpass, newpassrepeat);
         soft.assertEquals(newpass, newpassrepeat);
+        //clickElement(ibtnPassChange);
     }
     
     //click al btn cambiar contraseña
@@ -128,5 +132,18 @@ public class EditProfile extends FirstPage{
      public void Exit(){
         clickElement(exit);
     }
+
+    //Ingresa nuevo Email y Contraseña//
+    public void newlogin(){
+        navigateTo(url);
+        write(addEmail, newemail);  
+        write(addPass, newpass);    
+    }
+    //Click en botón "Ingresar"
+    public void newIngresar(){
+        clickElement(submitButton);
+    }
+
+
 
 }

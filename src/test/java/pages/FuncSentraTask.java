@@ -14,17 +14,33 @@ public class FuncSentraTask extends FirstPage {
     private String btnTaskPage2 = "//*[@id=\":r6:\"]/li[2]";
     private String btnTaskPage3 = "//*[@id=\":r6:\"]/li[3]";
     private String btnExit = "//span[@class='MuiTypography-root MuiTypography-body1 MuiListItemText-primary css-yb0lig']";
-
+    private String addEmail = "//input[@id='email']";
+    private String addPass = "//input[@id='password']";
+    private String submitButton = "//button[@type='submit']";
 
     private String url = "http://192.168.80.43:10500";
+    private String correo = "smartinez@sentra.cl";
+    private String password = "smart2025";
 
 
 
     //Navega a la url
     public void navigateToUrl() {
-        driver.manage().window().maximize();
         navigateTo(url);
+        driver.manage().window();
 
+    }
+
+    //Ingresa Email y Contraseña//
+    public void login(){
+        navigateTo(url);
+        write(addEmail, correo);  
+        write(addPass, password);    
+    }
+
+    //Click en botón "Ingresar"
+    public void Ingresar(){
+        clickElement(submitButton);
     }
 
     //clic al botón " < " 
@@ -40,6 +56,11 @@ public class FuncSentraTask extends FirstPage {
     //clic al botón "Tabla Compacta" 
     public void ButtonCompactTable() {{
         clickElement(btnCompactTable);
+        } 
+    }
+    //clic al botón "Tabla Compacta" nuevamente
+    public void iButtonCompactTable() {{
+        clickElement(ibtnCompactTable);
         } 
     }
     //clic al botón "Tareas por Paginas" 
@@ -68,8 +89,5 @@ public class FuncSentraTask extends FirstPage {
         }
     }
     
-    public void iButtonCompactTable() {{
-        clickElement(ibtnCompactTable);
-        } 
-    }
+    
 }
